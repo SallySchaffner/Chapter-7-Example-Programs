@@ -11,7 +11,7 @@ using namespace std;
 const int NUM_MONTHS = 3;
 const int NUM_DAYS = 30;
 const int NUM_CLASSES = 3;
-const int RAIN_ROW = 2;
+const int RAIN_COL = 1;
 const string MONTHS[] = { "June", "July", "August" };
 const string fileName = "RainOrShine.txt";
 
@@ -53,7 +53,7 @@ int main()
 
     getData(inFile, weather, NUM_MONTHS);
     classifyWeather(weather, NUM_MONTHS, weatherSummary);
-    maxRow = columnMax(weatherSummary, NUM_MONTHS, RAIN_ROW);
+    maxRow = columnMax(weatherSummary, NUM_MONTHS, RAIN_COL);
     writeReport(weatherSummary, NUM_MONTHS, maxRow);
     return 0;
 }
@@ -93,8 +93,11 @@ int columnMax(int weatherSummary[][NUM_CLASSES], int rows, int col)
 {
     int maxRainy = 0;
     for (int r = 1; r < rows; r++)
-        if (weatherSummary[r][col] < weatherSummary[r][col])
+    {
+        if (weatherSummary[r][col] > weatherSummary[maxRainy][col])
             maxRainy = r;
+    }
+       
     return maxRainy;
 }
 
@@ -103,7 +106,7 @@ void writeReport(int weatherSummary[][NUM_CLASSES], int rows, int maxRow)
     cout << "Summer Weather" << endl;
     cout << "Month" << "     " << "Sunny" << "     " << "Rainy" << "     " << "Cloudy" << endl;
     for (int r = 0; r < rows; r++)
-        cout << setw(6) << MONTHS[r] << setw(8) << weatherSummary[r][0] << setw(10) << weatherSummary[r][1] << setw(10) << weatherSummary[r][2] << endl;
+        cout << setw(6) << left << MONTHS[r] << setw(8) << right << weatherSummary[r][0] << setw(10) << weatherSummary[r][1] << setw(10) << weatherSummary[r][2] << endl;
     cout << "The month with the most number of rainy days was: " << MONTHS[maxRow] << endl;
 }
 
