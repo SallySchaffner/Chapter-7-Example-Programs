@@ -6,11 +6,6 @@
 const int NUM_QUESTIONS = 20;
 const int NUM_TO_PASS = 15;
 
-const char correctAnswers[] = { 'A', 'D', 'B', 'B', 'C',
-                               'B', 'A', 'B', 'C', 'D',
-                               'A', 'C', 'D', 'B', 'D',
-                               'C', 'D', 'A', 'D', 'B' };
-
 using namespace std;
 
 // This function gets the answers to an exam from interactive input.
